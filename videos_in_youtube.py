@@ -8,14 +8,16 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.edge.service import Service
 
+base_address = "1. once/Youtube Videos"
+
 
 class Learing:
     def __init__(
         self,
         second: int = 7,
-        link_file: str = "Youtube Videos/links.csv",
-        video_save_file: str = "Youtube Videos/will_videos.csv",
-        passing_file: str = "Youtube Videos/passing_link.csv",
+        link_file: str = base_address + "/links.csv",
+        video_save_file: str = base_address + "/will_videos.csv",
+        passing_file: str = base_address + "/passing_link.csv",
     ):
         assert link_file is not None
         self.link_file = link_file
@@ -68,7 +70,7 @@ class Learing:
         return pd.DataFrame(new_video)
 
     def browser_init(self):
-        self.browser = webdriver.Edge(service=Service(executable_path="./Youtube Videos/msedgedriver.exe"))
+        self.browser = webdriver.Edge(service=Service(executable_path=base_address + "/msedgedriver.exe"))
 
     def browser_finish(self):
         self.browser.quit()
